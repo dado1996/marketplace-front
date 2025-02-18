@@ -10,6 +10,7 @@ import FormControl from "@mui/material/FormControl";
 import InputLabel from "@mui/material/InputLabel";
 import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
+import Container from "@mui/material/Container";
 
 type Inputs = {
   email: string;
@@ -57,96 +58,100 @@ function Register({ setIsLogin }: { setIsLogin: (value: boolean) => void }) {
   };
 
   return (
-    <Box>
-      <Typography variant="h2">Register</Typography>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <Box
-          sx={{ display: "flex", flexDirection: "column", padding: 5 }}
-          gap={3}
-        >
-          <Controller
-            rules={{
-              required: true,
-            }}
-            name="email"
-            control={control}
-            render={({ field }) => (
-              <TextField
-                id="email"
-                label="Email"
-                helperText={errors.email?.message}
-                {...field}
-              />
-            )}
-          />
-          <Controller
-            rules={{
-              required: true,
-            }}
-            name="password"
-            control={control}
-            render={({ field }) => (
-              <TextField
-                id="password"
-                label="Password"
-                type="password"
-                helperText={errors.password?.message}
-                {...field}
-              />
-            )}
-          />
-          <Controller
-            rules={{
-              required: true,
-            }}
-            name="confirmPassword"
-            control={control}
-            render={({ field }) => (
-              <TextField
-                id="password"
-                label="Password"
-                type="password"
-                helperText={errors.password?.message}
-                {...field}
-              />
-            )}
-          />
-          <FormControl fullWidth>
-            <InputLabel id="type-register">Type</InputLabel>
+    <Container maxWidth="sm">
+      <Box sx={{ mt: 4 }}>
+        <Typography variant="h4" align="center" gutterBottom>
+          Register
+        </Typography>
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <Box
+            sx={{ display: "flex", flexDirection: "column", padding: 5 }}
+            gap={3}
+          >
             <Controller
               rules={{
                 required: true,
               }}
-              name="type"
+              name="email"
               control={control}
               render={({ field }) => (
-                <Select labelId="type-register" {...field}>
-                  <MenuItem value="buyer">Buyer</MenuItem>
-                  <MenuItem value="salesman">Salesman</MenuItem>
-                  <MenuItem value="admin">Administrator</MenuItem>
-                </Select>
+                <TextField
+                  id="email"
+                  label="Email"
+                  helperText={errors.email?.message}
+                  {...field}
+                />
               )}
             />
-          </FormControl>
-          <Button variant="outlined" type="submit">
-            Register
-          </Button>
-          {errorsRegister.length > 0 &&
-            errorsRegister.map((err, i) => (
-              <Typography key={i} color="red">
-                {err}
-              </Typography>
-            ))}
-        </Box>
-      </form>
-      <Link
-        sx={{ cursor: "pointer" }}
-        variant="body2"
-        onClick={() => setIsLogin(true)}
-      >
-        Already have an account?
-      </Link>
-    </Box>
+            <Controller
+              rules={{
+                required: true,
+              }}
+              name="password"
+              control={control}
+              render={({ field }) => (
+                <TextField
+                  id="password"
+                  label="Password"
+                  type="password"
+                  helperText={errors.password?.message}
+                  {...field}
+                />
+              )}
+            />
+            <Controller
+              rules={{
+                required: true,
+              }}
+              name="confirmPassword"
+              control={control}
+              render={({ field }) => (
+                <TextField
+                  id="password"
+                  label="Password"
+                  type="password"
+                  helperText={errors.password?.message}
+                  {...field}
+                />
+              )}
+            />
+            <FormControl fullWidth>
+              <InputLabel id="type-register">Type</InputLabel>
+              <Controller
+                rules={{
+                  required: true,
+                }}
+                name="type"
+                control={control}
+                render={({ field }) => (
+                  <Select labelId="type-register" {...field}>
+                    <MenuItem value="buyer">Buyer</MenuItem>
+                    <MenuItem value="salesman">Salesman</MenuItem>
+                    <MenuItem value="admin">Administrator</MenuItem>
+                  </Select>
+                )}
+              />
+            </FormControl>
+            <Button variant="outlined" type="submit">
+              Register
+            </Button>
+            {errorsRegister.length > 0 &&
+              errorsRegister.map((err, i) => (
+                <Typography key={i} color="red">
+                  {err}
+                </Typography>
+              ))}
+          </Box>
+        </form>
+        <Link
+          sx={{ cursor: "pointer" }}
+          variant="body2"
+          onClick={() => setIsLogin(true)}
+        >
+          Already have an account?
+        </Link>
+      </Box>
+    </Container>
   );
 }
 
