@@ -11,6 +11,7 @@ import { useEffect, useState } from "react";
 import { Product } from "../../types/ProductTypes";
 import { fetchProductsService } from "../../services/productServices";
 import { Typography } from "@mui/material";
+import debounce from "debounce";
 
 function ProductsTable() {
   const [products, setProducts] = useState<Product[]>([]);
@@ -37,7 +38,8 @@ function ProductsTable() {
       }
     }
 
-    fetchProducts();
+    const debouncedFetchProducts = debounce(fetchProducts, 300);
+    debouncedFetchProducts();
   }, [name, sku, prices]);
 
   return (
@@ -53,7 +55,11 @@ function ProductsTable() {
           onChange={(event) => setSku(event.target.value)}
         />
         <Slider
+          min={5}
+          max={999999}
+          marks
           value={prices}
+          step={20}
           onChange={(_event: Event, newValue: number | number[]) =>
             setPrices(newValue as number[])
           }
