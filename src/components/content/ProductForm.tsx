@@ -11,8 +11,8 @@ import Button from "@mui/material/Button";
 type Inputs = {
   name: string;
   sku: string;
-  amount: number;
-  price: number;
+  amount: string;
+  price: string;
 };
 
 function ProductForm() {

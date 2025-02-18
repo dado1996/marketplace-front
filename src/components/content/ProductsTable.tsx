@@ -54,7 +54,7 @@ function ProductsTable() {
         />
         <Slider
           value={prices}
-          onChange={(event: Event, newValue: number | number[]) =>
+          onChange={(_event: Event, newValue: number | number[]) =>
             setPrices(newValue as number[])
           }
         />
